@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Une exposition privée et cinématographique dédiée à Grace Yasmin">
+  <title>Exposition – Une œuvre d'art</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- FOND COSMIQUE (décor uniquement) -->
+  <div class="cosmic-bg" aria-hidden="true">
+    <div class="cosmic-layer-1"></div>
+    <div class="cosmic-layer-2"></div>
+    <div class="cosmic-overlay"></div>
+  </div>
+  <div id="stardust" aria-hidden="true"></div>
+  <div id="fireflies" aria-hidden="true"></div>
+
+  <!-- AUDIO DE FOND -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="Tiakola_coucher_de_soleil_mp3_75347 (1).mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ENVELOPPE -->
+  <div id="envelope-screen" role="dialog" aria-label="Enveloppe d'invitation">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Ouvrir l'enveloppe">
+      <div class="envelope__body">
+        <div class="envelope__flap" aria-hidden="true"></div>
+        <div class="envelope__seal" aria-hidden="true">💌</div>
+      </div>
+    </div>
+    <p class="envelope__hint">Ouvre cette enveloppe</p>
+    <p class="envelope__subhint">Une exposition t'attend</p>
+  </div>
+
+  <!-- CHARGEMENT -->
+  <div id="intro-wipe" aria-hidden="true">
+    <div class="intro-content">
+      <span class="intro-subtitle">Présenté pour</span>
+      <h1 id="intro-name">Grace Yasmin</h1>
+      <div class="loading-bar-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="loading-bar" id="loadingBar"></div>
+      </div>
+      <p class="loading-text" id="loadingText">Chargement du musée… 0%</p>
+    </div>
+  </div>
+
+  <!-- SALON + PORTES -->
+  <div id="welcome-salon" aria-hidden="true">
+    <div class="salon-split-side side-left" id="side-left" aria-hidden="true"></div>
+    <div class="salon-split-side side-right" id="side-right" aria-hidden="true"></div>
+    <div class="salon-light-beam" aria-hidden="true"></div>
+
+    <div class="salon-content-inner">
+      <span class="salon-eyebrow">Visite guidée</span>
+      <h2 class="salon-title">Bienvenue dans ton musée</h2>
+      <p class="salon-text">
+        Je t'amène ici face à une œuvre d'art pas comme les autres. Pas de toile de maître ou de sculpture ancienne, mais toi... tout simplement. Une pièce unique et précieuse qu'il fallait absolument exposer à sa juste valeur.
+      </p>
+      <div class="salon-action-wrapper">
+        <button id="open-museum-doors-btn" class="transition-btn door-trigger-btn">
+          Ouvrir les portes de la galerie
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= LE MUSÉE ================= -->
+  <main id="museum" aria-label="Galerie privée">
+    <button id="sound-toggle" title="Activer / couper la musique" aria-label="Activer ou couper la musique">🎵</button>
+
+    <div class="embers" aria-hidden="true">
+      <span class="ember" style="left:10%; animation-duration:8s;"></span>
+      <span class="ember" style="left:30%; animation-duration:11s; animation-delay:2s;"></span>
+      <span class="ember" style="left:50%; animation-duration:7s; animation-delay:1s;"></span>
+      <span class="ember" style="left:70%; animation-duration:10s; animation-delay:3s;"></span>
+      <span class="ember" style="left:90%; animation-duration:9s; animation-delay:1.5s;"></span>
+    </div>
+
+    <!-- PLAN DU MUSÉE : NAVIGATION ENTRE LES SALLES -->
+    <nav class="room-dots" id="room-dots" aria-label="Navigation entre les salles">
+      <button class="room-dot" data-goto="room-1" aria-label="Salle I — Le Cabinet des Reflets">I</button>
+      <button class="room-dot" data-goto="room-2" aria-label="Salle II — Le Boudoir des Portraits">II</button>
+      <button class="room-dot" data-goto="room-3" aria-label="Salle III — La Galerie du Mouvement">III</button>
+      <button class="room-dot" data-goto="room-4" aria-label="Salle IV — Le Salon des Éclats">IV</button>
+      <button class="room-dot" data-goto="room-5" aria-label="Salle V — La Galerie des Instants">V</button>
+    </nav>
+
+    <!-- ========== ACCUEIL DU MUSÉE ========== -->
+    <div class="museum-screen" id="screen-accueil" aria-hidden="true">
+      <div class="museum-screen__inner">
+        <span class="museum__eyebrow">Galerie Privée</span>
+        <h2 class="museum__title">Quelques Fragments</h2>
+        <p class="museum__caption">Chaque pas dans cette galerie dévoile un pan de lumière. Prends le temps de regarder, de contempler, et de laisser défiler les souvenirs...</p>
+        <button class="transition-btn room-next-btn" data-next="room-1">Entrer dans la première salle</button>
+      </div>
+    </div>
+
+    <!-- ========== SALLE I : LE CABINET DES REFLETS ========== -->
+    <div class="museum-screen" id="room-1" aria-hidden="true" data-room="1">
+      <button class="room-prev-btn" data-prev="screen-accueil" aria-label="Retour à l'accueil">← Accueil</button>
+      <div class="museum-screen__inner room-scroll">
+
+        <div class="room-intro anim-fade">
+          <span class="room-intro__eyebrow">Salle I</span>
+          <h3 class="room-intro__title">Le Cabinet des Reflets</h3>
+          <p class="room-intro__text">Ici, la lumière ne fait qu'un avec le miroir. Cette salle rassemble les instants où l'élégance se révèle sans effort, dans le naturel d'un geste ou d'un reflet.</p>
+          <span class="room-intro__cue">Fais défiler pour découvrir ↓</span>
+        </div>
+
+        <section class="exhibit anim-left pos-left" data-popup-text="Dans ce reflet, chaque détail capture une élégance rare et naturelle. Ton assurance illumine l'écran, tout simplement sublime.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="grace-candide.jpg" alt="Grace en robe bleue devant le miroir" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">L'Élégance du Miroir</h3>
+            <p class="exhibit__plaque-meta">Quand le quotidien devient une œuvre d'art.</p>
+          </div>
+        </section>
+
+        <section class="exhibit exhibit--reverse anim-right pos-right" data-popup-text="Un instant suspendu où la lumière caresse ton visage avec une infinie douceur.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="grace-portrait.jpg" alt="Portrait doux de Grace" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">L'Éclat d'un Regard</h3>
+            <p class="exhibit__plaque-meta">La délicatesse d'un profil et l'éclat d'un charme intemporel.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-left pos-center" data-popup-text="La robe à pois, le geste sûr, le regard qui ne ment pas. Une présence qui impose le silence.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.45 (1).jpeg" alt="Grace en robe à pois bleue" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Bleu & Pois</h3>
+            <p class="exhibit__plaque-meta">L'assurance incarnée.</p>
+          </div>
+        </section>
+
+        <section class="exhibit exhibit--reverse anim-right pos-right" data-popup-text="Il y a des instants que l'on ne met pas en scène, qui se laissent simplement surprendre. Celui-ci en fait partie.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.45 (2).jpeg" alt="Grace, instant du miroir" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Reflet Secret</h3>
+            <p class="exhibit__plaque-meta">Ce que le miroir garde pour lui.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-bottom pos-center" data-popup-text="Quand la couleur s'efface, il ne reste que l'essentiel : une présence, un regard, une lumière qui ne s'éteint pas.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.45 (3).jpeg" alt="Grace en noir et blanc" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Noir & Lumière</h3>
+            <p class="exhibit__plaque-meta">Sans couleur, rien n'a perdu son éclat.</p>
+          </div>
+        </section>
+
+        <div class="room-end anim-bottom">
+          <p class="room-end-label">Fin de la Salle I</p>
+          <button class="transition-btn" data-next="room-2">Salle suivante →</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========== SALLE II : LE BOUDOIR DES PORTRAITS ========== -->
+    <div class="museum-screen" id="room-2" aria-hidden="true" data-room="2">
+      <button class="room-prev-btn" data-prev="room-1" aria-label="Salle précédente">← Salle précédente</button>
+      <div class="museum-screen__inner room-scroll">
+
+        <div class="room-intro anim-fade">
+          <span class="room-intro__eyebrow">Salle II</span>
+          <h3 class="room-intro__title">Le Boudoir des Portraits</h3>
+          <p class="room-intro__text">Un espace plus intime, presque secret. Chaque portrait ici capture une nuance de douceur, un éclat retenu, une présence qui se dévoile lentement.</p>
+          <span class="room-intro__cue">Fais défiler pour découvrir ↓</span>
+        </div>
+
+        <section class="exhibit anim-tl pos-left" data-popup-text="Ce regard un peu espiègle, cette lumière dorée sur ta peau... on dirait que le temps s'est arrêté juste pour toi.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.46 (1).jpeg" alt="Grace cheveux longs, tatouages papillons" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Lumière Dorée</h3>
+            <p class="exhibit__plaque-meta">Les papillons sur ta peau racontent déjà une histoire.</p>
+          </div>
+        </section>
+
+        <section class="exhibit exhibit--reverse anim-br pos-right" data-popup-text="Ce plan rapproché dit tout : la douceur, la force, et cette petite étincelle dans le regard.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.46 (2).jpeg" alt="Gros plan Grace tresses et top rose" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Intense & Doux</h3>
+            <p class="exhibit__plaque-meta">Un regard qui ne laisse personne indifférent.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-tr pos-center" data-popup-text="La version orange, solaire, libre. Tu rayonnes même quand tu te caches un peu derrière le téléphone.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.45.jpeg" alt="Grace en robe orange et tresses" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Soleil d'Orange</h3>
+            <p class="exhibit__plaque-meta">Une énergie pure.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-left pos-left" data-popup-text="Rien n'est posé, rien n'est forcé. C'est exactement ce naturel-là qui rend ce portrait si juste.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.46 (3).jpeg" alt="Grace, instant volé" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Instant Volé</h3>
+            <p class="exhibit__plaque-meta">La grâce se cache dans les détails.</p>
+          </div>
+        </section>
+
+        <section class="exhibit exhibit--reverse anim-depth-in pos-right" data-popup-text="Il y a des visages devant lesquels le temps ralentit. Celui-ci en fait partie, sans aucun doute.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.46 (4).jpeg" alt="Grace, douce lumière" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Douce Lumière</h3>
+            <p class="exhibit__plaque-meta">Une présence qui adoucit tout autour d'elle.</p>
+          </div>
+        </section>
+
+        <div class="room-end anim-bottom">
+          <p class="room-end-label">Fin de la Salle II</p>
+          <button class="transition-btn" data-next="room-3">Salle suivante →</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========== SALLE III : LA GALERIE DU MOUVEMENT ========== -->
+    <div class="museum-screen" id="room-3" aria-hidden="true" data-room="3">
+      <button class="room-prev-btn" data-prev="room-2" aria-label="Salle précédente">← Salle précédente</button>
+      <div class="museum-screen__inner room-scroll">
+
+        <div class="room-intro anim-fade">
+          <span class="room-intro__eyebrow">Salle III</span>
+          <h3 class="room-intro__title">La Galerie du Mouvement</h3>
+          <p class="room-intro__text">Le mouvement raconte ce que l'image figée ne peut dire. Cette galerie vit, respire, avance — comme les instants qu'elle contient.</p>
+          <span class="room-intro__cue">Fais défiler pour découvrir ↓</span>
+        </div>
+
+        <section class="exhibit anim-top pos-center" data-popup-text="La beauté dans son expression la plus vivante. Chaque mouvement raconte une histoire.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-14 at 02.32.52.mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Mouvement Originel</h3>
+            <p class="exhibit__plaque-meta">La première étincelle.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-bottom pos-left" data-popup-text="Ces gestes, ce sourire en coin, cette façon de jouer avec la caméra... tu es complètement dans ton élément.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.43.mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Blonde & Libre</h3>
+            <p class="exhibit__plaque-meta">L'énergie pure en mouvement.</p>
+          </div>
+        </section>
+
+        <section class="exhibit exhibit--reverse anim-depth-in pos-right" data-popup-text="Ce moment dans la voiture, la lumière du jour sur ton visage... une scène de film à elle seule.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.45.mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Sur la Route</h3>
+            <p class="exhibit__plaque-meta">Un instant de cinéma.</p>
+          </div>
+        </section>
+
+        <section class="exhibit exhibit--reverse anim-right pos-right" data-popup-text="Quand tu bouges, l'image prend vie. Tout paraît plus vivant, plus léger, plus lumineux.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.36.mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Pleine Lumière</h3>
+            <p class="exhibit__plaque-meta">Le mouvement qui capte tous les regards.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-tl pos-left" data-popup-text="Pas de pose, pas de mise en scène : juste toi, et c'est largement suffisant pour faire un chef-d'œuvre.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.37.mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Sans Filtre</h3>
+            <p class="exhibit__plaque-meta">Le naturel, tout simplement.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-br pos-center" data-popup-text="Certaines choses ne se racontent pas, elles se regardent bouger. Celle-ci en fait partie.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.38.mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">L'Instant Présent</h3>
+            <p class="exhibit__plaque-meta">Ce qui ne se fige pas.</p>
+          </div>
+        </section>
+
+        <div class="room-end anim-bottom">
+          <p class="room-end-label">Fin de la Salle III</p>
+          <button class="transition-btn" data-next="room-4">Salle suivante →</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========== SALLE IV : LE SALON DES ÉCLATS ========== -->
+    <div class="museum-screen" id="room-4" aria-hidden="true" data-room="4">
+      <button class="room-prev-btn" data-prev="room-3" aria-label="Salle précédente">← Salle précédente</button>
+      <div class="museum-screen__inner room-scroll">
+
+        <div class="room-intro anim-fade">
+          <span class="room-intro__eyebrow">Salle IV</span>
+          <h3 class="room-intro__title">Le Salon des Éclats</h3>
+          <p class="room-intro__text">Ici se mêlent toutes les facettes d'une même personnalité : la force, la douceur, l'espièglerie. Un salon où tout se mêle, juste avant la toute dernière galerie.</p>
+          <span class="room-intro__cue">Fais défiler pour découvrir ↓</span>
+        </div>
+
+        <section class="exhibit exhibit--reverse anim-bl pos-right" data-popup-text="Le top rose, les tresses, ce regard un peu défiant... tu as cette capacité rare à être à la fois douce et puissante.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.46 (2).jpeg" alt="Grace top rose" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Force Douce</h3>
+            <p class="exhibit__plaque-meta">La contradiction la plus belle.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-depth-out pos-left" data-popup-text="Cette version un peu espiègle, langue dehors, doigt sur le visage... tu sais parfaitement quand faire sourire le monde.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.46 (5).jpeg" alt="Grace espiègle" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Espièglerie</h3>
+            <p class="exhibit__plaque-meta">Le sourire qui désarme.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-tr pos-center" data-popup-text="Et parfois, juste un regard calme, posé, qui dit tout sans un mot.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.46.jpeg" alt="Portrait doux en violet" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Silence Eloquent</h3>
+            <p class="exhibit__plaque-meta">Parfois le plus beau tableau n'a pas besoin de cadre.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-top pos-left" data-popup-text="Quatre instants, quatre ambiances, et pourtant toujours la même étincelle. Voilà ce qu'on appelle avoir du style.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <img src="WhatsApp Image 2026-09-16 at 21.34.47.jpeg" alt="Mosaïque de portraits de Grace" class="exhibit__img" loading="lazy">
+            <span class="photo-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Mosaïque</h3>
+            <p class="exhibit__plaque-meta">Quatre facettes, une seule personne.</p>
+          </div>
+        </section>
+
+        <section class="exhibit exhibit--reverse anim-bl pos-right" data-popup-text="Il y a des gestes qu'une photo ne saurait contenir. Celui-ci avait besoin de bouger pour exister.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.43 (1).mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Éclat Vivant</h3>
+            <p class="exhibit__plaque-meta">Quand l'image se met en mouvement.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-depth-out pos-center" data-popup-text="Sans couleur, la présence reste entière. Peut-être même qu'elle n'en devient que plus forte.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.43 (2).mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Noir & Blanc</h3>
+            <p class="exhibit__plaque-meta">Quand la couleur s'efface, il reste l'essentiel.</p>
+          </div>
+        </section>
+
+        <div class="room-end anim-bottom">
+          <p class="room-end-label">Fin de la Salle IV</p>
+          <button class="transition-btn" data-next="room-5">Salle suivante →</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========== SALLE V : LA GALERIE DES INSTANTS ========== -->
+    <div class="museum-screen" id="room-5" aria-hidden="true" data-room="5">
+      <button class="room-prev-btn" data-prev="room-4" aria-label="Salle précédente">← Salle précédente</button>
+      <div class="museum-screen__inner room-scroll">
+
+        <div class="room-intro anim-fade">
+          <span class="room-intro__eyebrow">Salle V</span>
+          <h3 class="room-intro__title">La Galerie des Instants</h3>
+          <p class="room-intro__text">La toute dernière salle de la visite. Des instants en mouvement, comme des souvenirs qui refusent de s'éteindre. Après elle, il ne restera plus que les mots.</p>
+          <span class="room-intro__cue">Fais défiler pour découvrir ↓</span>
+        </div>
+
+        <section class="exhibit anim-left pos-left" data-popup-text="Il suffit d'un geste, d'un regard, et toute la salle s'illumine. C'est exactement l'effet que tu fais.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.44 (1).mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Premier Souffle</h3>
+            <p class="exhibit__plaque-meta">Là où tout commence à bouger.</p>
+          </div>
+        </section>
+
+        <section class="exhibit exhibit--reverse anim-right pos-right" data-popup-text="Certaines personnes entrent dans une pièce et la changent. Cette vidéo en est la preuve.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.44 (2).mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Rayonnement</h3>
+            <p class="exhibit__plaque-meta">Une énergie qui se passe de mots.</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-depth-in pos-center" data-popup-text="Un sourire en coin, un regard qui joue avec la caméra… tout est dit, sans une seule parole.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.44 (3).mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Le Sourire Complice</h3>
+            <p class="exhibit__plaque-meta">Celui qui dit : « je sais ce que je fais ».</p>
+          </div>
+        </section>
+
+        <section class="exhibit anim-bottom pos-left" data-popup-text="Si chaque salle était un chapitre, celle-ci serait la dernière page : lumineuse, vivante, inoubliable.">
+          <div class="exhibit__frame interactive-photo" role="button" tabindex="0">
+            <video src="WhatsApp Video 2026-09-16 at 21.34.44.mp4" class="exhibit__img" autoplay loop muted playsinline preload="metadata"></video>
+            <span class="photo-hint">Extrait vivant</span>
+          </div>
+          <div class="exhibit__plaque">
+            <h3 class="exhibit__plaque-title">Dernier Mouvement</h3>
+            <p class="exhibit__plaque-meta">Pour clore la visite en beauté.</p>
+          </div>
+        </section>
+
+        <div class="room-end anim-bottom">
+          <p class="room-end-label">Fin de la Salle V</p>
+          <button id="reveal-message-btn" class="transition-btn">Découvrir la dernière pièce...</button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FERMETURE SYMBOLIQUE DES PORTES -->
+  <div id="doors-closing" aria-hidden="true">
+    <div class="doors-closing__panel doors-closing__panel--left"></div>
+    <div class="doors-closing__panel doors-closing__panel--right"></div>
+  </div>
+
+  <!-- MESSAGE FINAL -->
+  <div id="final-screen" aria-hidden="true" role="dialog">
+    <button id="back-to-museum-btn" aria-label="Retourner à la galerie">← Retour</button>
+    <div class="message-container">
+      <div class="message">
+        <p class="message__text" id="typed-message" aria-live="polite"></p>
+        <span class="message__signature" id="signature">Wilfried</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALE -->
+  <div class="modal-overlay" id="photo-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="modal-close" id="modal-close-btn" aria-label="Fermer">&times;</button>
+    <div class="modal-box">
+      <div class="modal-media">
+        <img id="modal-img" src="" alt="" style="display:none;">
+        <video id="modal-video" src="" controls loop playsinline style="display:none; width:100%; max-height:70vh;"></video>
+      </div>
+      <div class="modal-content">
+        <h3 id="modal-title"></h3>
+        <p id="modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
