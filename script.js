@@ -74,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50);
+    }
 
     envelope.classList.add('is-open');
     await wait(580);

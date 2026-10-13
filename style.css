@@ -44,6 +44,7 @@ body {
   font-family: var(--font-garamond);
   overflow-x: hidden;
   min-height: 100vh;
+  min-height: 100svh;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -82,11 +83,13 @@ body {
 }
 
 @keyframes envelopeVibrate {
-  0%, 90%, 100% { transform: rotate(0deg); }
-  92% { transform: rotate(-1deg); }
-  94% { transform: rotate(1deg); }
-  96% { transform: rotate(-1deg); }
-  98% { transform: rotate(1deg); }
+  0%, 80%, 100% { transform: rotate(0deg); }
+  82% { transform: rotate(-1.5deg); }
+  84% { transform: rotate(1.5deg); }
+  86% { transform: rotate(-1.5deg); }
+  88% { transform: rotate(1.5deg); }
+  90% { transform: rotate(-1.5deg); }
+  92% { transform: rotate(1.5deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -148,7 +151,8 @@ body {
 
 .envelope__subhint {
   font-size: 0.8rem;
-  color: rgba(255, 245, 235, 0.7);
+  color: var(--creme);
+  opacity: 1;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-top: 0.4rem;
@@ -243,6 +247,7 @@ body {
   top: 0;
   width: 50vw;
   height: 100vh;
+  height: 100svh;
   background: rgba(30, 18, 45, 0.58);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -491,7 +496,7 @@ body {
   margin-top: 1rem;
   font-size: 0.8rem;
   letter-spacing: 1px;
-  color: rgba(255, 245, 235, 0.5);
+  color: rgba(255, 245, 235, 0.8);
   animation: cueBounce 2.6s ease-in-out infinite;
 }
 
@@ -537,6 +542,7 @@ body {
   border-radius: 20px;
   backdrop-filter: blur(6px);
   transition: background 0.25s ease, color 0.25s ease;
+  min-height: 44px;
 }
 
 .room-prev-btn:hover,
@@ -573,14 +579,14 @@ body {
 }
 
 .room-dot {
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(255, 245, 235, 0.3);
   background: transparent;
   color: rgba(255, 245, 235, 0.6);
   font-family: var(--font-cinzel);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
@@ -769,7 +775,7 @@ body {
 
 .exhibit__plaque-meta {
   font-size: 0.85rem;
-  color: rgba(255, 245, 235, 0.62);
+  color: rgba(255, 245, 235, 0.85);
   font-style: italic;
 }
 
@@ -1650,7 +1656,7 @@ body {
 
 .photo-hint {
   font-family: var(--font-cinzel);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   background: rgba(18, 12, 38, 0.82);
   border: 1px solid rgba(229, 184, 66, 0.5);
@@ -1793,3 +1799,10 @@ body {
     border-width: 7px;
   }
 }
+/* ===== Correctifs mobile : points de navigation et petits textes ===== */
+@media (max-width: 768px) {
+  .room-dots { gap: 0.3rem; padding: 0.35rem 0.5rem; }
+  .room-dot { width: 40px; height: 40px; font-size: 0.75rem; }
+  .room-prev-btn { font-size: 0.75rem; }
+}
+.photo-hint { font-size: 0.75rem; }
